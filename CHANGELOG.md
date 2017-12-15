@@ -7,7 +7,7 @@
 * `STPPaymentConfiguration.requiredShippingAddress` now is a set of `STPContactField` objects instead of a `PKAddressField` bitmask. 
 * See MIGRATING.md for more information on any of the previously mentioned breaking API changes.
 * Pre-built view controllers now layout properly on iPhone X in landscape orientation, respecting `safeAreaInsets`.
-* Fixes a bug where `STPPaymentContext`'s `retryLoading` method would not re-retrieve the customer object, even after calling `STPCustomerContext`'s `clearCachedCustomer` method.
+* `STPPaymentContext`'s `retryLoading` method will now always attempt to retrieve a new customer object, regardless of whether a cached customer object is available. Previously, this method was only intended for recovery from a loading error; if a customer had already been retrieved, `retryLoading` would do nothing.
 
 ## 11.5.0 2017-11-09
 * Adds a new helper method to `STPSourceParams` for creating reusable Alipay sources. [#811](https://github.com/stripe/stripe-ios/pull/811)
